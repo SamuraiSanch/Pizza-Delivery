@@ -1,0 +1,25 @@
+#include "OrderQueue.h"
+
+void OrderQueue::push(Order &order) {
+    std::unique_lock<std::mutex> lock(mtx);
+    orders.push(order);
+    ++m_orderId;
+    order.id = m_orderId;
+    cv.notify_one();
+}
+Order OrderQueue::pop() {
+    std::unique_lock<std::mutex> lock(mtx);
+    cv.wait(lock, [this] { return !orders.empty() || stopped; });
+    if (stopped && orders.empty())
+        throw std::runtime_error("Queue is stopped");
+    Order newOrder = orders.front();
+    orders.pop();
+    return newOrder;
+}
+void OrderQueue::stop() {
+    std::unique_lock<std::mutex> lock(mtx);
+    stopped = true;
+}
+bool OrderQueue::isStopped() const {
+    return stopped;
+}
