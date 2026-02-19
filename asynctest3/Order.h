@@ -19,7 +19,7 @@ struct Order {
     }
    
 };
-std::ostream& operator<< (std::ostream& out, Order& o) {
+inline std::ostream& operator<< (std::ostream& out, const Order& o) {
     out << "Order #" << o.id << ": " << o.pizzaType;
     return out;
 }

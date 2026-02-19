@@ -1,5 +1,10 @@
 #include "Waiter.h"
 #include <random>
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <cstdlib>
+#include <string>
 
 void Waiter::orderGenerate() {
     if (!m_stop) {

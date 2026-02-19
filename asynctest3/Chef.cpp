@@ -1,4 +1,7 @@
 #include "Chef.h"
+#include <iostream>
+#include <thread>
+#include <chrono>
 
 void Chef::cookOrder() {
     if (!m_stop) {

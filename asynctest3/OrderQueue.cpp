@@ -19,6 +19,7 @@ Order OrderQueue::pop() {
 void OrderQueue::stop() {
     std::unique_lock<std::mutex> lock(mtx);
     stopped = true;
+    cv.notify_all();
 }
 bool OrderQueue::isStopped() const {
     return stopped;
