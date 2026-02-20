@@ -6,9 +6,9 @@ private:
     int m_id;
     OrderQueue& m_inputQueue;
     OrderQueue& m_outputQueue;
-    bool m_stop;
+    bool* m_stop;
 public:
-    Chef(int id, OrderQueue& inputQueue, OrderQueue& outputQueue, bool stop = false) : m_id(id), m_inputQueue(inputQueue), m_outputQueue(outputQueue), m_stop(stop) {}
+    Chef(int id, OrderQueue& inputQueue, OrderQueue& outputQueue, bool* stop) : m_id(id), m_inputQueue(inputQueue), m_outputQueue(outputQueue), m_stop(stop) {}
     void cookOrder();
 };
 

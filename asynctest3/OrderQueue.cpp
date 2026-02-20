@@ -3,8 +3,6 @@
 void OrderQueue::push(Order &order) {
     std::unique_lock<std::mutex> lock(mtx);
     orders.push(order);
-    ++m_orderId;
-    order.id = m_orderId;
     cv.notify_one();
 }
 Order OrderQueue::pop() {

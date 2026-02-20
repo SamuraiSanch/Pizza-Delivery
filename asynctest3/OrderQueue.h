@@ -8,7 +8,6 @@
 
 class OrderQueue {
 private:
-    int m_orderId = 0;
     std::queue<Order> orders;
     std::mutex mtx;
     std::condition_variable cv;
@@ -17,10 +16,9 @@ private:
 public:
     // Добавлення нового ордера в чергу
     void push(Order& order);
-    // Видалення ордера з черги
-    Order pop();  // Блокується якщо черга порожня
+    Order pop();
     // Зупинка при стопі
-    void stop();  // Сигналізує про зупинку
+    void stop();
     bool isStopped() const;
 };
 

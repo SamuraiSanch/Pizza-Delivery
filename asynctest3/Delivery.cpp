@@ -3,12 +3,21 @@
 #include <thread>
 #include <chrono>
 
+extern std::mutex coutMutex;
+
 void Delivery::deliverOrder() {
-    if (!m_stop) {
+    while (!(*m_stop)) {
         Order toDeliver = m_inputQueue.pop();
-        std::cout << "[Delivery " << m_id << "] Delivering " << toDeliver << '\n';
+        {
+            std::lock_guard<std::mutex> lock(coutMutex);
+            std::cout << "[Delivery " << m_id << "] Delivering " << toDeliver << '\n';
+        }
         std::this_thread::sleep_for(std::chrono::seconds(toDeliver.preparationTime));
         m_outputQueue.push(toDeliver);
-        std::cout << "[Delivery " << m_id << "] " << toDeliver << " delivered!" << '\n';
+        toDeliver.deliveredAt = std::chrono::steady_clock::now();
+        {
+            std::lock_guard<std::mutex> lock(coutMutex);
+            std::cout << "[Delivery " << m_id << "] " << toDeliver << " delivered!" << '\n';
+        }
     }
 }

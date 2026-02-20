@@ -5,7 +5,7 @@
 class Waiter {
 private:
     int m_id;
-    bool m_stop = false;
+    bool* m_stop;
     OrderQueue& m_newOrdersQueue;
     enum Pizza {
         MARGHERITA,
@@ -16,10 +16,8 @@ private:
     std::string getPizza(int num);
 
 public:
-    Waiter(int id, OrderQueue& newOrdersQueue) : m_id(id), m_newOrdersQueue(newOrdersQueue) { }
+    Waiter(int id, OrderQueue& newOrdersQueue, bool* stop) : m_id(id), m_newOrdersQueue(newOrdersQueue), m_stop(stop) {  }
     void orderGenerate();
-    // friend void stop();
-    // подумати і реалізувати в інших файлах теж
 };
 
 #endif
