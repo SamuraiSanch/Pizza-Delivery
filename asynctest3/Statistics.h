@@ -2,6 +2,7 @@
 #define STATISTICS_H
 #include <map>
 #include <string>
+#include "OrderQueue.h"
 class Statistics {
 private:
     int m_totalOrdersAccepted;
@@ -11,7 +12,7 @@ private:
 
     std::map<int, int> eachChefCooked;
     std::map<std::string, int> eachPizzaPopularity;
-    void setAverageTotalTime();
+    void setAverageTotalTime(const OrderQueue& q);
     void setTotalOrdersAccepted();
     void setTotalOrdersCooked();
     void setTotalOrdersDelivered();
