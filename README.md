@@ -54,7 +54,7 @@ g++ -std=c++11 -pthread manager.cpp Waiter.cpp Chef.cpp Delivery.cpp OrderQueue.
 ## 📂 Структура проєкту
 ```
 pizza-restaurant/
-├── main.cpp              # Головний файл
+├── manager.cpp              # Головний файл
 ├── Order.h               # Структура замовлення
 ├── OrderQueue.h/cpp      # Потокобезпечна черга
 ├── Waiter.h/cpp          # Офіціанти
@@ -62,9 +62,9 @@ pizza-restaurant/
 ├── Delivery.h/cpp        # Кур'єри
 ├── Statistics.h/cpp      # Збір статистики
 ├── Colors.h              # ANSI коди для кольорів
-├── README.md             # Ця документація
+├── README.md             # Документація
 └── screenshots/
-    └── demo.png          # Скріншот роботи
+    └── demo1.png/demo2.png          # Скріншоти роботи
 ```
 
 ## 🎓 Чому я навчився під час створення/Чим ця програма може бути корисною?
