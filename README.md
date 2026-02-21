@@ -1,4 +1,4 @@
-# 🍕 Pizza Restaurant Simulator
+# 🍕 Pizza Delivery Simulator
 
 Багатопотокова симуляція піцерії на C++ з використанням `std::thread`, `std::mutex` та `std::condition_variable`.
 
