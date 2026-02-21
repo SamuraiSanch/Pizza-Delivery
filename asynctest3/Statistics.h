@@ -9,7 +9,9 @@ private:
     OrderQueue& m_readyOrders;
     OrderQueue& m_deliveredOrders;
 
-    std::vector<Order> m_allOrdersInQueue;
+    std::vector<Order> m_allOrdersInDeliverQueue;
+    std::vector<Order> m_allOrdersInChefQueue;
+    std::vector<Order> m_allOrdersInWaiterQueue;
 
     int m_totalOrdersAccepted;
     int m_totalOrdersCooked;
@@ -26,9 +28,15 @@ private:
     void setEachPizzaPopularity();
 public:
     Statistics(OrderQueue& newOrders, OrderQueue& readyOrders, OrderQueue& deliveredOrders) : m_newOrders(newOrders), m_readyOrders(readyOrders), m_deliveredOrders(deliveredOrders){ 
-        m_allOrdersInQueue = deliveredOrders.getAllOrders(); 
+        m_allOrdersInWaiterQueue = m_newOrders.getAllOrders();
+        m_allOrdersInChefQueue = m_readyOrders.getAllOrders();
+        m_allOrdersInDeliverQueue = m_deliveredOrders.getAllOrders(); 
+        calculateAllTime();
+        setTotalOrders();
+        setEachChefCooked();
+        setEachPizzaPopularity();
     }
-   
+    friend std::ostream& operator<< (std::ostream& out, Statistics& s);
 };
 
 

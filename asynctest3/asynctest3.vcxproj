@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chef.h" />
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="Delivery.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="OrderQueue.h" />

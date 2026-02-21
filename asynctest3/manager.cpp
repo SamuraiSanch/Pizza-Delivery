@@ -1,10 +1,12 @@
 ﻿#include <iostream>
 #include <thread>
+#include <time.h>
+#include <cstdlib>
 #include "Waiter.h"
 #include "Chef.h"
 #include "Delivery.h"
-#include <time.h>
-#include <cstdlib>
+#include "Statistics.h"
+#include "Colors.h"
 
 std::mutex coutMutex;
 const int workingTime = 10;
@@ -36,12 +38,18 @@ int main() {
     while (true) {
         auto now = std::chrono::steady_clock::now();
         if (now - startedWorkingAt >= std::chrono::seconds(workingTime)) {
-            std::cout << "\nNo time remains\n";
+            {
+                std::lock_guard<std::mutex> lock(coutMutex);
+                std::cout << RED << "\nNo time remains\n\n" << RESET;
+            }
             stop = true;
+            newOrders.stop();
+            readyOrders.stop();
+            deliveredOrders.stop();
             break;
         }
     }
-    
+
     wt1.join();
     wt2.join();
     ct1.join();
@@ -49,6 +57,8 @@ int main() {
     ct3.join();
     dt1.join();
     dt2.join();
-    
+
+    Statistics statistic(newOrders, readyOrders, deliveredOrders);
+    std::cout << statistic;
     return 0;
 }
