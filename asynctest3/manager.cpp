@@ -26,6 +26,7 @@ int main() {
     Delivery d1(1, readyOrders, deliveredOrders, &stop);
     Delivery d2(2, readyOrders, deliveredOrders, &stop);
     int counter = 0;
+
     std::thread wt1(&Waiter::orderGenerate, &w1);
     std::thread wt2(&Waiter::orderGenerate, &w2);
     std::thread ct1(&Chef::cookOrder, &c1);
