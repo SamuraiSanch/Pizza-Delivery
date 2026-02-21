@@ -37,12 +37,6 @@
 
 ## 🚀 Як запустити
 
-### Компіляція (GCC/Clang):
-```bash
-g++ -std=c++11 -pthread manager.cpp Waiter.cpp Chef.cpp Delivery.cpp OrderQueue.cpp Statistics.cpp -o pizza_restaurant
-./pizza_restaurant
-```
-
 ### Компіляція (Visual Studio):
 Відкрити проєкт у Visual Studio і натиснути `F5` (Run).
 
