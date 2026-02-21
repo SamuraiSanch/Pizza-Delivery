@@ -22,3 +22,16 @@ void OrderQueue::stop() {
 bool OrderQueue::isStopped() const {
     return stopped;
 }
+std::vector<Order> OrderQueue::getAllOrders() {
+    std::unique_lock<std::mutex> lock(mtx);
+    std::vector<Order> result;
+    std::queue<Order> temp = orders;
+    while (!temp.empty()) {
+        result.push_back(temp.front());
+        temp.pop();
+    }
+    return result;
+}
+int OrderQueue::getSize() const {
+    return orders.size();
+}

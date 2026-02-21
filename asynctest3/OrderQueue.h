@@ -20,6 +20,8 @@ public:
     // «упинка при стоп≥
     void stop();
     bool isStopped() const;
+    std::vector<Order> getAllOrders();
+    int getSize() const;
 };
 
 
